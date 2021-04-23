@@ -43,5 +43,5 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: test-artifact
-          path: $HOME/testfile
+          path: ${{ env.EV1 }}/testfile
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn` 
