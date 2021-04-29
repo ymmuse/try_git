@@ -21,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       EV1: app/abc
-      SHA6: ${{ steps.short-sha.outputs.sha }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -35,6 +34,7 @@ jobs:
       - name: Run a one-line script
         run: |
           echo "EV1=$HOME/$EV1" >> $GITHUB_ENV
+          echo "SHA6=${{ steps.short-sha.outputs.sha }}" >> $GITHUB_ENV
           echo Hello, world!
           echo "SHA6=$SHA6"
           echo SHA6=$SHA6
