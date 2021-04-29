@@ -21,20 +21,23 @@ jobs:
     runs-on: ubuntu-latest
     env:
       EV1: app/abc
-      SHA12: ${GITHUB_SHA::12}
+      SHA6: ${{ steps.short-sha.outputs.sha }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      - uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+        with:
+          length: 6
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
           echo "EV1=$HOME/$EV1" >> $GITHUB_ENV
           echo Hello, world!
-          echo "SHA12=$SHA12"
-          echo SHA12=$SHA12
+          echo "SHA6=$SHA6"
+          echo SHA6=$SHA6
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
